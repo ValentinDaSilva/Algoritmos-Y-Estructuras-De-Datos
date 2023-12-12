@@ -13,6 +13,10 @@
                 "kind": "build",
                 "isDefault": true
             },
+            "presentation": {
+                "reveal": "never", // Esta línea ocultará la terminal
+                "panel": "dedicated"
+            },
             "problemMatcher": []
         }
     ],
