@@ -7,10 +7,7 @@
             "command": "sh",
             "args": [
                 "-c",
-                "g++ ${file} -o ${fileDirname}/${fileBasenameNoExtension}", "&&",
-                "${fileDirname}/${fileBasenameNoExtension}", "&&", 
-                "sleep 3s", "&&",
-                "rm ${fileDirname}/${fileBasenameNoExtension}"
+                "g++ ${file} -o ${fileDirname}/${fileBasenameNoExtension} && ${fileDirname}/${fileBasenameNoExtension} && sleep 3s &&rm ${fileDirname}/${fileBasenameNoExtension}"
             ],
             "group": {
                 "kind": "build",
