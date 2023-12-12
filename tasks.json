@@ -18,6 +18,20 @@
                 "panel": "dedicated"
             },
             "problemMatcher": []
+        },
+        {
+            "label": "compilarYejecutar",
+            "type": "shell",
+            "command": "sh",
+            "args": [
+                "-c",
+                "g++ ${file} -o ${fileDirname}/${fileBasenameNoExtension} && ${fileDirname}/${fileBasenameNoExtension} && echo &&rm ${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
         }
     ],
     "inputs": [
