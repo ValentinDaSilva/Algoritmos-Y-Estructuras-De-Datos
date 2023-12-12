@@ -1,0 +1,27 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "SubirTodoAGit",
+            "type": "shell",
+            "command": "sh",
+            "args": [
+                "-c",
+                "git add . && git commit -m \"${input:commitMessage}\" && git push"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "type": "promptString",
+            "id": "commitMessage",
+            "description": "Ingrese el mensaje de commit",
+            "default": "Mensaje predeterminado"
+        }
+    ]
+}
