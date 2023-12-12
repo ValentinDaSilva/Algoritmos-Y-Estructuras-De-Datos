@@ -1,6 +1,6 @@
 /* Sean a, b y c tres variables de tipo int cuyos valores actuales son 0, 1 y 2 respectivamente: ¿qué valor
 tiene cada variable tras ejecutar esta secuencia de asignaciones?
-● a = b++ - c--;
+● a = b++ - c-- ;
   a = 1 - 2 = -1
   b = 2
   c = 1
