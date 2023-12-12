@@ -29,7 +29,7 @@ using namespace std;
 int main(){
     int a = 0, b = 1, c = 2;
 
-    a += a = b + c;
+    a += a = b + c; // expresion de arriba
     
     cout<<"A: "<<a<<endl;
     cout<<"B: "<<b<<endl;
