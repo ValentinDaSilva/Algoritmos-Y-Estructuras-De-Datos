@@ -28,7 +28,9 @@ using namespace std;
 
 int main(){
     int a = 0, b = 1, c = 2;
+
     a += a = b + c;
+    
     cout<<"A: "<<a<<endl;
     cout<<"B: "<<b<<endl;
     cout<<"C: "<<c<<endl;

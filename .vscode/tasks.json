@@ -14,7 +14,7 @@
                 "isDefault": true
             },
             "presentation": {
-                "reveal": "never", // Esta línea ocultará la terminal
+                "reveal": "never",
                 "panel": "dedicated"
             },
             "problemMatcher": []
