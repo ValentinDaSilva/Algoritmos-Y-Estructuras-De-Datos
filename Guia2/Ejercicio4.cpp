@@ -9,5 +9,6 @@ int main(){
     total = cantHombres + cantMujeres;
     cout<<"Porcentaje Mujeres: "<<fixed<<setprecision(2)<<cantMujeres*100/(float)total<<"%"<<endl;
     cout<<"Porcentaje Mujeres: "<<fixed<<setprecision(2)<<cantHombres*100/(float)total<<"%"<<endl;
+    
     return 0;
 }
