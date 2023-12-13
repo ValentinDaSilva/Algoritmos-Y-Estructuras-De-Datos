@@ -8,12 +8,13 @@ int main(){
     cin>>numero;
     if(numero>999 and numero<10000){
         //Tengo que ver si su ultimo digo es par o impar
-
+        //si es el ultimo es par
         if(numero%10%2 == 0 and numero/10%10%2 != 0){
             if(numero/100%10%2 == 0 and numero/1000%2!=0){
                 Alternante=true;
             }
         }
+        //si el ultimo es impar
         else if(numero%10%2 != 0 and numero/10%10%2 == 0){
             if(numero/100%10%2 != 0 and numero/1000%2==0){
                 Alternante=true;
