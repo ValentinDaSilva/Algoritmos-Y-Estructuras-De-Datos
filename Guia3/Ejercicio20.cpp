@@ -23,6 +23,5 @@ int main(){
         }
         numero++;
     }
-    
     return 0;
 }
