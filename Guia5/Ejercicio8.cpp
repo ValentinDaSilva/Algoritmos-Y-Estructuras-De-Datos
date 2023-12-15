@@ -18,6 +18,7 @@ bool todos_iguales(int v[],int TL){
     bool todosIguales = true;
     while(todosIguales and i < (TL - 1)){
         if(v[i] != v[i+1]) todosIguales = false;
+        i++;
     }
     return todosIguales;
 }
