@@ -2,15 +2,17 @@
 using namespace std;
 
 void mostrarVector(int[],int);
-void random(int[],int);
+void inicializar_teclado(int[],int);
 bool esSumaDeAlguno(int[],int,int);
+int sumaDigitos(int);
 
 int main(){
     int TL = 10, v[TL], numero;
     inicializar_teclado(v,TL);
     do{
         cin >> numero;  
-    } while (esSumaDeAlguno(v,TL,numero));
+    } while (!esSumaDeAlguno(v,TL,numero));
+    cout<<numero<<endl;
     return 0;
 }
 
@@ -23,8 +25,9 @@ bool esSumaDeAlguno(int v[],int TL, int elemento){
     int suma, i = 0;
     bool esIgual = false;
     while(!esIgual and i < TL){
-        suma = sumaDigitos(v[i]);
-        if(suma == elemento) esIgual = true;
+        suma = sumaDigitos(elemento);
+        if(suma == v[i]) esIgual = true;
+        i++;
     }
     return esIgual;
 }
