@@ -3,23 +3,26 @@ using namespace std;
 
 void mostrarVector(int[],int);
 void inicializar_teclado(int[],int);
-void modificarLista(int[],int&);
+int modificarLista(int[],int&);
 void insertarElemento(int[],int&, int, int);
 
 int main(){
     int TL = 10, v[20] = {1,2,300,4,5,6,700,8,9,10};
-    modificarLista(v,TL);
+    cout<<"Cantidad de agregados: "<<modificarLista(v,TL)<<endl;
     mostrarVector(v,TL);
     return 0;
 }
 
-void modificarLista(int v[], int& TL){
+int modificarLista(int v[], int& TL){
+    int cantAgregados = 0;
     for(int i = 0; i < TL; i++){
         if(v[i]%100 == 0){
             insertarElemento(v,TL,v[i]+1,i);
             i++;
+            cantAgregados++;
         }
     }
+    return cantAgregados;
 }
 
 void insertarElemento(int v[],int& TL, int elemento, int posicion){
