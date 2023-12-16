@@ -2,25 +2,28 @@
 using namespace std;
 
 void mostrarVector(int[],int);
-void merge(int[],int,int,int,int);
-void mergesort(int[],int,int);
 void random(int[],int);
+void eliminarPosicion(int[],int&,int);
+int eliminarMultiplos(int[],int&,int);
+void merge(int[],int,int,int,int);
+void mergeSort(int[],int,int);
 
 int main(){
-    int TL = 10, v[TL];
+    int TL = 30, v[TL];
     random(v,TL);
     mostrarVector(v,TL);
-    mergesort(v,0,TL-1);
+    eliminarMultiplos(v,TL,2);
+    mergeSort(v,0,TL-1);
     mostrarVector(v,TL);
     return 0;
 }
 
-void mergesort (int v[], int inicio, int final) { 
-    if (final - inicio == 0)
+void mergeSort(int v[],int inicio, int final){
+   if (final - inicio == 0)
         return;
     else {
-        mergesort (v, inicio, (inicio+final) / 2);
-        mergesort (v,(inicio+final) / 2 + 1, final);
+        mergeSort (v, inicio, (inicio+final) / 2);
+        mergeSort (v,(inicio+final) / 2 + 1, final);
         merge(v, inicio, (inicio+final) / 2, (inicio+final)/ 2 + 1, final);
     }
 }
@@ -43,12 +46,23 @@ void merge(int v[],int inicio1, int final1, int inicio2, int final2){
     }
 }
 
-void mostrarVector(int v[],int TL){
-    cout<<"[ ";
+int eliminarMultiplos(int v[], int& TL, int numero){
+    int TLinicial = TL;
     for(int i = 0; i < TL; i++){
-        cout<<v[i]<<" ";
+        if(v[i]%numero == 0){
+             eliminarPosicion(v,TL,i);
+             i--;
+        }
+        
     }
-    cout<<"]"<<endl;
+    return (TLinicial- TL);
+}
+
+void eliminarPosicion(int v[],int& TL,int posicion){
+    for(int i = 0; i < TL; i++){
+        if(i >= posicion) v[i] = v[i+1];
+    }
+    TL--;
 }
 
 void random(int v[], int TL){
@@ -56,4 +70,12 @@ void random(int v[], int TL){
     for(int i = 0; i < TL; i++){
         v[i] = rand()%50;
     }
+}
+
+void mostrarVector(int v[],int TL){
+    cout<<"[ ";
+    for(int i = 0; i < TL; i++){
+        cout<<v[i]<<" ";
+    }
+    cout<<"]"<<endl;
 }
