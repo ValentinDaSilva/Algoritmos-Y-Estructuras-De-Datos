@@ -5,6 +5,7 @@ void mostrarVector(int[],int);
 void random(int[],int);
 void intercambia(int[],int,int,int);
 int estaEnElVector(int[],int,int);
+void intercambiarElementos(int[],int,int,int);
 
 int main(){
     int TL = 10, v[TL], elem1, elem2;
@@ -21,7 +22,7 @@ void intercambiarElementos(int v[],int TL, int elem1, int elem2){
         pos2 = estaEnElVector(v,TL,elem2);
     
     if(pos1 != -1 and pos2 != -1){
-        intercambiarElementos(v,TL,pos1,pos2);
+        intercambia(v,TL,pos1,pos2);
     }else{
         cout<<"Uno de los elementos no pertenece al vector"<<endl;
     }
