@@ -16,7 +16,7 @@ int main(){
 }
 
 void ordenamientoBurbuja(int v[],int TL){
-    int intercambios, k = 0;
+    int intercambios = 1, k = 0;
     while(k < TL and intercambios != 0){
         intercambios = 0;
         for(int i = 0; i < TL - (k + 1); i++){
