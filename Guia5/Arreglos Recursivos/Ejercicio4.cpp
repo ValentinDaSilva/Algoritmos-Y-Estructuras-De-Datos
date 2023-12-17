@@ -17,6 +17,7 @@ int main(){
     menor = menorEnElVector(v,TL);
     mayor = mayorEnElVector(v,TL);
     modificar(v,TL,mayor,menor);
+    cout<<"[ ";mostrarVector(v,TL);
 
     return 0;
 }
@@ -24,8 +25,8 @@ int main(){
 void modificar (float v[],int TL, float mayor, float menor){
     if(TL == 0) return;
     else{
-        v[0] = ((v[0] - menor) / mayor - menor)*100;
-        modificar(v,TL-1,mayor,menor);
+        v[0] = ((v[0] - menor) / (mayor - menor))*100;
+        modificar(&v[1],TL-1,mayor,menor);
     }
 }
 
