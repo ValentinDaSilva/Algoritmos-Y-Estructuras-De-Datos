@@ -9,6 +9,7 @@ int sumaDigitos(int);
 int main(){
     int TL = 10, v[TL], numero;
     inicializar_teclado(v,TL);
+    cout<<"Se le pediran numeros hasta que la suma de los digitos de uno de ellos sea igual a uno de los componentes del vector"<<endl;
     do{
         cin >> numero;  
     } while (!esSumaDeAlguno(v,TL,numero));
@@ -33,6 +34,7 @@ bool esSumaDeAlguno(int v[],int TL, int elemento){
 }
 
 void inicializar_teclado(int v[], int TL){
+    cout<<"Inicialice el vector con "<<TL<<" elementos: "<<endl;
     for(int i = 0; i < TL; i++){
         cin>>v[i];
     }
