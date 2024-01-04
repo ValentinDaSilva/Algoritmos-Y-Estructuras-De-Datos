@@ -5,8 +5,9 @@ using namespace std;
 const int sucursales = 4, articulos = 5;
 void mostrarMatriz(int[][articulos]);
 void cargar(int[][articulos]);
+void cargarPrecios(int[]);
 void recaudacionPorSucursal(int[][articulos],int[],int[]);
-int recaudacionDeLaEmpresa(int[]);
+int recaudacionDeLaEmpresa(int[],int);
 int sucursalQueMasRecaudo(int[]);
 
 int main(){
