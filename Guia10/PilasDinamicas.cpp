@@ -13,12 +13,19 @@ bool estaVacia(Pila);
 void apilar(Pila&,int);
 void desapilar(Pila&);
 int tope(Pila);
-int tamanoPila(Pila);
-
+int tamanioPila(Pila);
 
 int main(){
     Pila miPila;
     inicializarPila(miPila);
+    apilar(miPila,5);
+    apilar(miPila,10);
+    apilar(miPila,15);
+
+    cout<<tope(miPila)<<endl;
+    desapilar(miPila);
+    cout<<tope(miPila)<<endl;
+
     return 0;
 }
 
@@ -47,7 +54,7 @@ int tope(Pila miPila){
     return miPila->dato;
 }
 
-int tamanoPila(Pila miPila){
+int tamanioPila(Pila miPila){
     if(estaVacia(miPila)) return 0;
-    return 1 + tamanoPila(miPila->siguiente);
+    return 1 + tamanioPila(miPila->siguiente);
 }
