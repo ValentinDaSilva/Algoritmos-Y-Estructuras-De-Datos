@@ -13,6 +13,7 @@ int main(){
     mostrarVector(v,Tam);
     return 0;
 }
+
 void random(int v[], int TL){
     srand(time(NULL));
     for(int i = 0; i < TL; i++){
