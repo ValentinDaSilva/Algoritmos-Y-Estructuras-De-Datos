@@ -7,7 +7,7 @@ struct Nodo {
 };
 typedef Nodo* PNodo;
 PNodo Lista = NULL;
-//a
+
 void insertarElemento(PNodo& Lista, string elemento){
     PNodo nuevo_elemento = new Nodo;
     nuevo_elemento->dato = elemento;
