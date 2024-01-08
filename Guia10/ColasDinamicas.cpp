@@ -12,7 +12,7 @@ void inicializarCola(Cola&,Cola&);
 bool estaVacia(Cola);
 void encolar(Cola,Cola&,int);
 void desencolar(Cola&,Cola&);
-int frenteCola(Cola);
+int tope(Cola);
 int tamanoCola(Cola);
 
 int main(){
