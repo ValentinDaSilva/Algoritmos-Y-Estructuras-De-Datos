@@ -10,7 +10,7 @@ typedef Nodo* Cola;
 
 void inicializarCola(Cola&,Cola&);
 bool estaVacia(Cola);
-void encolar(Cola,Cola&,int);
+void encolar(Cola&,Cola&,int);
 void desencolar(Cola&,Cola&);
 int tope(Cola);
 int tamanoCola(Cola);
@@ -30,14 +30,16 @@ bool estaVacia(Cola miCola){
     return miCola == nullptr;
 }
 
-void encolar(Cola& miCola,Cola frente, int elemento){
+void encolar(Cola& frente,Cola& fin, int elemento){
     Cola nuevo_nodo = new Nodo;
     nuevo_nodo->dato = elemento;
     nuevo_nodo->siguiente = nullptr;
 
-    if(estaVacia(miCola)){
-        miCola = frente = nuevo_nodo;
+    if(estaVacia(frente)){
+        fin = frente = nuevo_nodo;
     }else{
-        miCola->siguiente = nuevo_nodo;
+        fin->siguiente = nuevo_nodo;
     }
+    fin = nuevo_nodo;
+
 }
