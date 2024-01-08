@@ -7,7 +7,7 @@ struct Nodo {
 };
 typedef Nodo* PNodo;
 PNodo Lista = NULL;
-
+//asd
 void insertarElemento(PNodo& Lista, string elemento){
     PNodo nuevo_elemento = new Nodo;
     nuevo_elemento->dato = elemento;
@@ -19,7 +19,7 @@ void insertarElemento(PNodo& Lista, string elemento){
         aux2 = aux1;
         aux1 = aux1->siguiente;
     }
-
+    //asd
     if(aux1 == Lista){
         Lista = nuevo_elemento;
     }else{
