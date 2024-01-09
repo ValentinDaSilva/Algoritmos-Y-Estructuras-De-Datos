@@ -1,23 +1,37 @@
 #include<iostream>
 using namespace std;
+//Uno dos listas y no deben tener repetidos
 
 struct Nodo{
-    int dato;
+    string dato;
     Nodo* siguiente;
 };
 typedef Nodo* Lista;
 
 void cargarLista(Lista&);
-void agregarElemento(Lista&,int);
-bool estaEnLaLista(Lista,int);
+void agregarElemento(Lista&,string);
+bool estaEnLaLista(Lista,string);
 void mostrarLista(Lista);
+void unirListas(Lista,Lista&);
 
 int main(){
     Lista A, B;
     cargarLista(A);
-    mostrarLista(A);
+    cargarLista(B);
+    unirListas(A,B);
+    mostrarLista(B);
     return 0;
 }
+
+void unirListas(Lista A, Lista& B){
+    if(A == nullptr) return;
+    Lista siguiente = A->siguiente;
+    string dato = A->dato;
+    agregarElemento(B,dato);
+    delete A;
+    unirListas(siguiente,B);
+}
+
 
 void mostrarLista(Lista lista){
     if(lista == nullptr) return ;
@@ -27,14 +41,14 @@ void mostrarLista(Lista lista){
 
 void cargarLista(Lista& L){
     L = nullptr;
-    int dato;
+    string dato;
     do{
-        cin>>dato;
-        if(dato!=0) agregarElemento(L,dato);
-    }while(dato!=0);
+        getline(cin,dato);
+        if(dato!="0") agregarElemento(L,dato);
+    }while(dato!="0");
 }
 
-void agregarElemento(Lista& L,int elemento){
+void agregarElemento(Lista& L,string elemento){
     if(!estaEnLaLista(L,elemento)){
         Lista nuevo_elemento = new Nodo;
         nuevo_elemento->dato = elemento;
@@ -43,7 +57,7 @@ void agregarElemento(Lista& L,int elemento){
     }
 }
 
-bool estaEnLaLista(Lista lista, int elemento){
+bool estaEnLaLista(Lista lista, string elemento){
     if(lista == nullptr) return false;
     if(lista->dato == elemento) return true;
     return estaEnLaLista(lista->siguiente,elemento);
