@@ -27,7 +27,7 @@ void insertarOrdenado(PIntegracion&,int,float);
 int main(){
     Alumno comisionA, comisionB;
     generarNotas(comisionA); generarNotas(comisionB);
-    // integrar(comisionA,comisionB);
+
     return 0;
 }
 float promedio(float v[], int TL){
