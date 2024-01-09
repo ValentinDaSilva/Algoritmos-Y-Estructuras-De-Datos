@@ -12,31 +12,31 @@ void inicializarCola(Cola&,Cola&);
 bool estaVacia(Cola);
 void encolar(Cola&,Cola&,int);
 void desencolar(Cola&,Cola&);
-int tamanoCola(Cola);
+int tamanoCola(Cola,Cola);
 
 int main(){
-    Cola miCola, frente;
-    inicializarCola(miCola,frente);
-    encolar(miCola,frente,5);
-    encolar(miCola,frente,10);
-    encolar(miCola,frente,15);
-
+    Cola fin, frente;
+    inicializarCola(frente,fin);
+    encolar(frente,fin,5);
+    encolar(frente,fin,10);
+    encolar(frente,fin,15);
+    tamanio(frente,fin);
     cout<<frente->dato<<endl;
-    desencolar(miCola,frente);
+    desencolar(frente,fin);
     cout<<frente->dato<<endl;
     return 0;
 }
 
-void inicializarCola(Cola& miCola, Cola& frente){
-    miCola = nullptr;
+void inicializarCola(Cola& frente, Cola& fin){
     frente = nullptr;
+    fin = nullptr;
 }
 
-bool estaVacia(Cola miCola){
-    return miCola == nullptr;
+bool estaVacia(Cola frente){
+    return frente == nullptr;
 }
 
-void encolar(Cola& fin,Cola& frente, int elemento){
+void encolar(Cola& frente,Cola& fin, int elemento){
     Cola nuevo_nodo = new Nodo;
     nuevo_nodo->dato = elemento;
     nuevo_nodo->siguiente = nullptr;
@@ -49,7 +49,7 @@ void encolar(Cola& fin,Cola& frente, int elemento){
     fin = nuevo_nodo;
 }
 
-void desencolar(Cola& fin,Cola& frente){
+void desencolar(Cola& frente,Cola& fin){
     Cola aux = frente;
     if(estaVacia(frente)) cout<<"No hay elementos para retirar"<<endl;
     else{
@@ -61,4 +61,9 @@ void desencolar(Cola& fin,Cola& frente){
         }
     }
     return;
+}
+
+int tamanio(Cola frente, Cola fin){
+    if(frente = fin) return 1;
+    return 1 + tamanio(fin, frente->siguiente);
 }
