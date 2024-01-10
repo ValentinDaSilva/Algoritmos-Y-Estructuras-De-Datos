@@ -14,11 +14,23 @@ struct PILA {
 };
 typedef PILA* PPila;
 
-void agregarNodo(Lista&,int);
-void mostrarLista(Lista);
+struct MATRIZ {
+    int fila, suma;
+    MATRIZ* siguiente;
+};
+typedef MATRIZ* Matriz;
+
 void buscarAislados(int**,Lista&);
+void agregarNodo(Lista&,int);
+void apilar(PPila&,int,int);
+void desapilar(PPila&);
+void mostrarLista(Lista);
 void cargarMatriz(int**);
 void mostrarMatriz(int**);
+void cargarPila(int**,PPila&);
+void agregarNodoAMatriz(Matriz&,int,int);
+void mostrarPila(PPila);
+
 
 int main(){
     int ** M;
@@ -31,6 +43,8 @@ int main(){
     mostrarMatriz(M);
     buscarAislados(M,listaAislados);
     cout<<"L";mostrarLista(listaAislados);
+    cargarPila(M,sumaFilas);
+    cout<<"P";mostrarPila(sumaFilas);
     return 0;
 }
 
@@ -39,7 +53,6 @@ void buscarAislados(int** M , Lista& listaAislados){
         for(int j = 0; j < dimensiones - 2; j++){
             if(*(*(M + i) + j + 1) != *(*(M + i) + j) and *(*(M + i) + j + 1) != *(*(M + i) + j + 2)){
                 agregarNodo(listaAislados,*(*(M + i) + j + 1));
-                // cout<<*(*(M + i) + j + 1)<<endl;
             }
         }
     }
@@ -101,26 +114,51 @@ void mostrarMatriz(int** M){
     }
 }
 
-void sumaFilas(int** M, PPila miPila){
-    int sumaPorFilas[dimensiones][2];
-    int suma = 0, fila;
-    for(int i = 0; i < dimensiones;i++){
-        for(int j = 0; j < dimensiones; j++){
-            suma += M[i][j];
-        }
-        sumaPorFilas[i][0] = i;
-        sumaPorFilas[i][1] = suma;
-        suma = 0;
-    }
-    Lista yaEsta = NULL;
+void cargarPila(int** M,PPila& miPila){
+    int suma = 0;
+    Matriz sumaPorFilas = NULL;
     for(int i = 0 ; i < dimensiones; i++){
-        
+       for(int j = 0; j < dimensiones ; j++){
+            suma += M[i][j];
+       }
+       agregarNodoAMatriz(sumaPorFilas,i,suma);
+       suma = 0;
+    }
+    while(sumaPorFilas != NULL){
+        cout<<"Entre"<<endl;
+        apilar(miPila, sumaPorFilas->suma, sumaPorFilas->fila);
+        sumaPorFilas = sumaPorFilas->siguiente;
     }
 
 }
 
-bool estaEnElLista(Lista lista, int valor){
-    if(lista == NULL) return false;
-    if(lista->elemento == valor) return true;
-    return estaEnElLista(lista->siguiente,valor);
+void agregarNodoAMatriz(Matriz& lista, int fila, int suma){
+    Matriz nuevo_nodo = new MATRIZ;
+    nuevo_nodo->fila = fila;
+    nuevo_nodo->suma = suma;
+    nuevo_nodo->siguiente = NULL;
+
+    Matriz aux1 = lista;
+    Matriz aux2;
+
+    while(aux1 != NULL and aux1->suma > nuevo_nodo->suma  ){
+        aux2 = aux1;
+        aux1 = aux1->siguiente;
+    }
+
+    if(aux1 == lista){
+        lista = nuevo_nodo;
+    }else{
+        aux2->siguiente = nuevo_nodo;
+    }
+    nuevo_nodo->siguiente = aux1;
+}
+
+void mostrarPila(PPila miPila){
+    if(miPila == NULL){
+        cout<<" -> NULL"<<endl;
+        return;
+    }
+    cout<<" -> ( "<<miPila->fila<<", "<<miPila->suma<<" )";
+    mostrarPila(miPila->siguiente);
 }
