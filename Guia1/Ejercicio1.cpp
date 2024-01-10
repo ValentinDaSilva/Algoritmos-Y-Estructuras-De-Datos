@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
-int main (void) {
+
+int main () {
     int nroLegajo;
         cout <<"Me dices tu número de legajo?"<< endl;
         cin >> nroLegajo;
