@@ -1,58 +1,55 @@
-#include<iostream>
-#include<iomanip>
+#include <iostream>
+#include <ctime>
 using namespace std;
-int cantAlumnos = 20;
 
-struct INTEGRACION{
-    int ID;
-    float promedio;
-    INTEGRACION* siguiente;
-};
-typedef INTEGRACION* PIntegracion;
-
-struct CALIFICACIONES{
+struct Calificacion {
     int ID;
     float calificacion[6];
-    CALIFICACIONES* siguiente;
+    Calificacion *siguiente;
 };
-typedef CALIFICACIONES* Alumno;
+typedef Calificacion* Alumno;
 
-void cargarDatosComision(Alumno&);
+void agregarElemento(Alumno&,int,float[]);
+void mostrarLista(Alumno);
 
 int main(){
-    Alumno comisionA, comisionB;
+    float notas[] = {4.3,6.0,8.2,10.0,5.5,6.0};
+    Alumno comisionA = NULL, comisionB = NULL;
     srand(time(NULL));
+    agregarElemento(comisionA,rand()%100,notas);
+    mostrarLista(comisionA);
     return 0;
 }
 
-void cargarDatosComision(Alumno& alumno){
-    Alumno nuevo_alumno;
-    
-    for(int i = 0 ; i < cantAlumnos; i++){
-        nuevo_alumno = new CALIFICACIONES;
-        nuevo_alumno->ID = i;
-        for(int j = 0; j < 6; j++){
-            nuevo_alumno->calificacion[j] == (float)(rand()%10);
-        }
-        Alumno aux1 = alumno;
-        Alumno aux2;
-        while(aux1 != NULL and nuevo_alumno->ID > aux1->ID){
-            aux2 = aux1;
-            aux1 = aux1->siguiente;
-        }
-        if(aux1 = alumno){
-            nuevo_alumno->siguiente = aux1;
-        }else{
-            aux2->siguiente = nuevo_alumno;
-            nuevo_alumno->siguiente = aux1;
-        }
-        alumno = nuevo_alumno;
-    }
-    
+void agregarElemento(Alumno& Lista, int dato, float notas[]){
+    Alumno nuevo_elemento = new Calificacion;
+    nuevo_elemento->ID = dato;
+    for(int i = 0; i < 6; i++) nuevo_elemento->calificacion[i] = notas[i];
+    Alumno aux1 = Lista;
+    Alumno aux2;
 
+    while(aux1 != NULL and aux1->ID < nuevo_elemento->ID){
+        aux2 = aux1;
+        aux1 = aux1->siguiente;
+    }
+
+    if(aux1 == Lista){
+        Lista = nuevo_elemento;
+    }else{
+        aux2->siguiente = nuevo_elemento;
+    }
+    nuevo_elemento->siguiente = aux1;
 }
 
-
+void mostrarLista(Alumno lista){
+    if(lista == NULL){
+        cout<<endl;
+        return;
+    }
+    cout<<lista->ID<<" [";
+    for(int i = 0; i < 6; i++) cout<<lista->calificacion[i]<<" "; cout<<"]"<<endl;
+    mostrarLista(lista->siguiente);
+}
 
 
 
