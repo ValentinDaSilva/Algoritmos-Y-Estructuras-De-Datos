@@ -7,6 +7,6 @@ int main(){
     cout<<"Cantidad Hombres: ";cin>>cantHombres;
     total = cantHombres + cantMujeres;
     cout<<"Porcentaje Mujeres: "<<cantMujeres*100/(float)total<<"%"<<endl;
-    cout<<"Porcentaje Mujeres: "<<cantHombres*100/(float)total<<"%"<<endl;
+    cout<<"Porcentaje Hombres: "<<cantHombres*100/(float)total<<"%"<<endl;
     return 0;
 }
