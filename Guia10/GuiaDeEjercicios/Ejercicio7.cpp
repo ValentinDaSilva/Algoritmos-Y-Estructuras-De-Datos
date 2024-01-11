@@ -35,6 +35,7 @@ void desapilar(Pila&);
 void encolar(Cola&,Cola&,Persona);
 void desencolar(Cola&,Cola&);
 void mostrarCola(Cola,Cola);
+void unirListas(Cola,Cola,Persona,Persona);
 
 int main(){
     srand(time(NULL));
@@ -48,9 +49,12 @@ int main(){
     mostrarLista(hombres); mostrarLista(mujeres);
     buscarMujeresDeMenorEdad(mujeres,mujeresConMenosEdad);
     cout<<"P";mostrarLista(mujeresConMenosEdad);
-    PERSONA nueva = {43647177,"Valentin",22,'H',NULL}, nueva2 = {43647177,"Juan",22,'H',NULL}, nueva3 = {43647177,"Pepe",22,'H',NULL};
-    Persona Pnueva = &nueva, Pnueva2 = &nueva2, Pnueva3 = &nueva3;
+    unirListas(frente,final,mujeres,hombres);
     return 0;
+}
+
+void unirListas(Cola frente, Cola final, Persona hombres, Persona mujeres){
+    
 }
 
 void mostrarCola(Cola frente , Cola final){
