@@ -27,15 +27,15 @@ void cargarHombres(Persona&,int);
 void cargarMujeres(Persona&,int);
 void mostrarLista(Persona);
 void apilar(Pila& ,Persona);
-void eliminarNodo(Persona&, Persona);
-void mostrarLista(Pila);
-void buscarMujeresDeMenorEdad(Persona,Pila&);
-Persona buscarMenorEdad(Persona);
 void desapilar(Pila&);
+void mostrarLista(Pila);
+void eliminarNodo(Persona&,Persona);
+void buscarMujeresDeMenorEdad(Persona&,Pila&);
 void encolar(Cola&,Cola&,Persona);
 void desencolar(Cola&,Cola&);
 void mostrarCola(Cola,Cola);
 void unirListas(Cola&,Cola&,Persona,Persona);
+Persona buscarMenorEdad(Persona);
 
 int main(){
     srand(time(NULL));
@@ -48,40 +48,15 @@ int main(){
     cargarHombres(hombres,cantHombres); cargarMujeres(mujeres,cantMujeres);
     mostrarLista(hombres); mostrarLista(mujeres);
     buscarMujeresDeMenorEdad(mujeres,mujeresConMenosEdad);
-    mostrarLista(mujeres);
-    // cout<<"P";mostrarLista(mujeresConMenosEdad);
-    // unirListas(frente,final,hombres,mujeres);
-    // mostrarCola(frente,final);
+    cout<<"P";mostrarLista(mujeresConMenosEdad);
+    unirListas(frente,final,hombres,mujeres);
+    mostrarCola(frente,final);
     return 0;
-}
-
-void unirListas(Cola& frente, Cola& final, Persona hombres, Persona mujeres){
-    if(hombres != NULL and mujeres == NULL){
-        encolar(frente,final,hombres);
-        unirListas(frente,final,hombres->siguiente,mujeres);
-        return;
-    }
-    else if(hombres == NULL and mujeres != NULL){
-        encolar(frente,final,mujeres);
-        unirListas(frente,final,hombres,mujeres->siguiente);
-        return;
-    }
-    else if(hombres == NULL and mujeres == NULL) return;
-    if(hombres->nombre < mujeres->nombre){
-        encolar(frente,final,hombres);
-        unirListas(frente,final,hombres->siguiente,mujeres);
-        return;
-    }
-    else{
-        encolar(frente,final,mujeres);
-        unirListas(frente,final,hombres,mujeres->siguiente);
-        return;
-    }
 }
 
 void mostrarCola(Cola frente , Cola final){
     if(frente == final){
-        cout<<frente->persona->nombre<<endl<<endl;;
+        cout<<frente->persona->nombre<<" <- NULL"<<endl<<endl;;
         return;
     }
     cout<<frente->persona->nombre<<" <- ";
@@ -110,23 +85,28 @@ void desencolar(Cola& frente, Cola& final){
     delete aux;
 }
 
-void mostrarLista(Pila pila){
-    if(pila == NULL){
-        cout<<"-> NULL"<<endl;
+void unirListas(Cola& frente, Cola& final, Persona hombres, Persona mujeres){
+    if(hombres != NULL and mujeres == NULL){
+        encolar(frente,final,hombres);
+        unirListas(frente,final,hombres->siguiente,mujeres);
         return;
     }
-    cout<<" -> "<<pila->mujer->nombre;
-    mostrarLista(pila->siguiente);
-}
-
-void buscarMujeresDeMenorEdad(Persona listaMujeres, Pila& pila) {
-    Persona menorEdad;
-    for(int i = 0; i < 5 && listaMujeres!=nullptr; i++){
-        menorEdad = buscarMenorEdad(listaMujeres);
-        apilar(pila, menorEdad);
-        eliminarNodo(listaMujeres, menorEdad);
+    else if(hombres == NULL and mujeres != NULL){
+        encolar(frente,final,mujeres);
+        unirListas(frente,final,hombres,mujeres->siguiente);
+        return;
     }
-    // mostrarLista(listaMujeres);
+    else if(hombres == NULL and mujeres == NULL) return;
+    if(hombres->nombre < mujeres->nombre){
+        encolar(frente,final,hombres);
+        unirListas(frente,final,hombres->siguiente,mujeres);
+        return;
+    }
+    else{
+        encolar(frente,final,mujeres);
+        unirListas(frente,final,hombres,mujeres->siguiente);
+        return;
+    }
 }
 
 Persona buscarMenorEdad(Persona listaPersonas){
@@ -134,6 +114,15 @@ Persona buscarMenorEdad(Persona listaPersonas){
     Persona edadSiguiente = buscarMenorEdad(listaPersonas->siguiente);
     if(listaPersonas->edad < edadSiguiente->edad) return listaPersonas;
     return edadSiguiente;
+}
+
+void buscarMujeresDeMenorEdad(Persona& lista, Pila& pila){
+    Persona edadMenor = NULL;
+    for(int i = 0; i < 5; i++){
+        edadMenor = buscarMenorEdad(lista);
+        apilar(pila,edadMenor);
+        eliminarNodo(lista,edadMenor);
+    }
 }
 
 void eliminarNodo(Persona& listaPersonas,Persona NodoAEliminar){
@@ -147,7 +136,14 @@ void eliminarNodo(Persona& listaPersonas,Persona NodoAEliminar){
     eliminarNodo(listaPersonas->siguiente,NodoAEliminar);
 }
 
-
+void mostrarLista(Pila pila){
+    if(pila == NULL){
+        cout<<"-> NULL"<<endl;
+        return;
+    }
+    cout<<" -> "<<pila->mujer->nombre;
+    mostrarLista(pila->siguiente);
+}
 
 void apilar(Pila& pila , Persona persona){
     Pila nuevo_elemento = new PILA;
@@ -156,7 +152,6 @@ void apilar(Pila& pila , Persona persona){
     nuevo_elemento->mujer->dni = persona->dni;
     nuevo_elemento->siguiente = pila;
     pila = nuevo_elemento;
-    delete persona;
 }
 
 void desapilar(Pila& pila){
@@ -238,4 +233,3 @@ void mostrarLista(Persona persona){
     cout<<endl;
     mostrarLista(persona->siguiente);
 }
-
