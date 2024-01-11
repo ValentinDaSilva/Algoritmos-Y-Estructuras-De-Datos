@@ -33,11 +33,13 @@ void buscarMujeresDeMenorEdad(Persona,Pila&);
 Persona buscarMenorEdad(Persona);
 void desapilar(Pila&);
 void encolar(Cola&,Cola&,Persona);
-void encolar(Cola&,Cola&);
+void desencolar(Cola&,Cola&);
+void mostrarCola(Cola,Cola);
+
 int main(){
     srand(time(NULL));
     Persona hombres = NULL, mujeres = NULL;
-    Pila mujeresConMenColagggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbosEdad = NULL;
+    Pila mujeresConMenosEdad = NULL;
     Cola frente = nullptr, final = nullptr;
     int cantHombres,cantMujeres;
     cout<<"Cantidad de hombres: "; cin>>cantHombres;
@@ -46,13 +48,24 @@ int main(){
     mostrarLista(hombres); mostrarLista(mujeres);
     buscarMujeresDeMenorEdad(mujeres,mujeresConMenosEdad);
     cout<<"P";mostrarLista(mujeresConMenosEdad);
-    encolar()
+    PERSONA nueva = {43647177,"Valentin",22,'H',NULL}, nueva2 = {43647177,"Juan",22,'H',NULL}, nueva3 = {43647177,"Pepe",22,'H',NULL};
+    Persona Pnueva = &nueva, Pnueva2 = &nueva2, Pnueva3 = &nueva3;
     return 0;
 }
 
+void mostrarCola(Cola frente , Cola final){
+    if(frente == final){
+        cout<<frente->persona->nombre<<endl<<endl;;
+        return;
+    }
+    cout<<frente->persona->nombre<<" <- ";
+    desencolar(frente,final);
+    mostrarCola(frente,final);
+}
 void encolar(Cola& frente, Cola& final, Persona persona){
     Cola nuevo_elemento = new COLA;
     nuevo_elemento->persona = persona;
+    nuevo_elemento->siguiente = nullptr;
     if(frente == NULL){
         frente = final = nuevo_elemento;
     }else{
@@ -68,7 +81,7 @@ void desencolar(Cola& frente, Cola& final){
     }
     Cola aux = frente;
     frente = frente->siguiente;
-    delete aux;
+    // delete aux;
 }
 
 void mostrarLista(Pila pila){
