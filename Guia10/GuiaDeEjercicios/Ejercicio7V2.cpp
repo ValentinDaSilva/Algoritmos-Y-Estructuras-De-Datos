@@ -35,6 +35,7 @@ void encolar(Cola&,Cola&,Persona);
 void desencolar(Cola&,Cola&);
 void mostrarCola(Cola,Cola);
 void unirListas(Cola&,Cola&,Persona,Persona);
+int promedioEdadHombres(Persona);
 Persona buscarMenorEdad(Persona);
 
 int main(){
@@ -51,7 +52,12 @@ int main(){
     cout<<"P";mostrarLista(mujeresConMenosEdad);
     unirListas(frente,final,hombres,mujeres);
     mostrarCola(frente,final);
+    promedioEdadHombres(hombres);
     return 0;
+}
+
+int promedioEdadHombres(Persona lista){
+    
 }
 
 void mostrarCola(Cola frente , Cola final){
