@@ -28,3 +28,8 @@ void mostrarVector(int v[],int TL){
     }
     cout<<"]"<<endl;
 }
+
+
+
+
+
