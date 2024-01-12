@@ -56,6 +56,7 @@ void cargarDatos(Usuario& usuario){
         getline(archivoUsuarios,contrasenia);
         if(isalpha(username[0])) agregarALaLista(usuario,username,contrasenia);
     }
+    archivoUsuarios.close();
 }
 
 void guardarEnArchivos(ofstream& archivoUsuarios,Usuario usuario){
@@ -66,6 +67,7 @@ void guardarEnArchivos(ofstream& archivoUsuarios,Usuario usuario){
         if(usuario->siguiente != NULL) archivoUsuarios<<endl<<endl;
         usuario = usuario->siguiente;
     }
+    archivoUsuarios.close();
 }
 
 void mostrarLista(Usuario usuario){
