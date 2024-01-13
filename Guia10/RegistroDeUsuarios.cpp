@@ -11,13 +11,12 @@ typedef USUARIO* Usuario;
 
 void agregarALaLista(Usuario&,string,string);
 void mostrarLista(Usuario);
-void guardarEnArchivos(ofstream&,Usuario);
+void guardarEnArchivos(Usuario);
 void cargarDatos(Usuario&);
 
 int main(){
     Usuario listaUsuarios = NULL;
     string usuario, contrasenia;
-    ofstream archivoUsuarios;
     cargarDatos(listaUsuarios);
     int opcion;
     do{
@@ -38,28 +37,36 @@ int main(){
             mostrarLista(listaUsuarios);
             break;
         case 3: 
-            guardarEnArchivos(archivoUsuarios,listaUsuarios);
+            guardarEnArchivos(listaUsuarios);
         }
     }while(opcion != 3);
     return 0;
 }
 
 void cargarDatos(Usuario& usuario){
-    ifstream archivoUsuarios;
-    archivoUsuarios.open("registroUsuarios.txt",ios::app);
-    string username, contrasenia;
-    char aux;
-    while(!archivoUsuarios.eof()){
-        getline(archivoUsuarios,username,' ');
-        getline(archivoUsuarios,username);
-        getline(archivoUsuarios,contrasenia,' ');
-        getline(archivoUsuarios,contrasenia);
-        if(isalpha(username[0])) agregarALaLista(usuario,username,contrasenia);
+    // Abre el archivo en modo lectura binaria
+    ifstream archivoBinario("registroUsuariosBinario.dat", ios::in | ios::binary);
+
+    if (!archivoBinario.is_open()) {
+        cerr << "No se pudo abrir el archivo binario para lectura." << endl;
+        return;
     }
-    archivoUsuarios.close();
+
+    // Lee la estructura USUARIO desde el archivo
+    if (archivoBinario.read(reinterpret_cast<char*>(&usuario), sizeof(USUARIO))) {
+        cout << "Usuario cargado desde el archivo correctamente." << endl;
+        // Puedes realizar acciones adicionales aquí si la lectura fue exitosa
+    } else {
+        cerr << "Error al leer desde el archivo binario." << endl;
+    }
+
+    // Cierra el archivo
+    archivoBinario.close();
+    
 }
 
-void guardarEnArchivos(ofstream& archivoUsuarios,Usuario usuario){
+void guardarEnArchivos(Usuario usuario){
+    ofstream archivoUsuarios, archivoUsuariosBinario;
     archivoUsuarios.open("registroUsuarios.txt", ios::trunc);
     while(usuario != NULL){
         archivoUsuarios << "Usuario: " << usuario->username<<endl;
@@ -68,6 +75,11 @@ void guardarEnArchivos(ofstream& archivoUsuarios,Usuario usuario){
         usuario = usuario->siguiente;
     }
     archivoUsuarios.close();
+    archivoUsuariosBinario.open("registroUsuariosBinario.dat",ios::trunc|ios::binary);
+    // while(usuario != NULL){
+        archivoUsuariosBinario.write((char*)&usuario,sizeof(USUARIO));
+    // }
+    archivoUsuariosBinario.close();
 }
 
 void mostrarLista(Usuario usuario){
