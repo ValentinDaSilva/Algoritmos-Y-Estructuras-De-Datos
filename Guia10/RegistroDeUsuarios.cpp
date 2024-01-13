@@ -45,23 +45,24 @@ int main(){
 
 void cargarDatos(Usuario& usuario){
     // Abre el archivo en modo lectura binaria
-    ifstream archivoBinario("registroUsuariosBinario.dat", ios::in | ios::binary);
-
-    if (!archivoBinario.is_open()) {
-        cerr << "No se pudo abrir el archivo binario para lectura." << endl;
+    string username, password;
+    ifstream archivo("registroUsuarios.txt");
+    if (!archivo.is_open()) {
+        cout << "No se pudo abrir el archivo binario para lectura." << endl;
         return;
     }
+    cout<<"LLegue aca"<<endl;
+    // while(!archivo.eof()){
+        archivo.seekp((200,ios::cur));
+        getline(archivo,username);
+        archivo.seekg((12,ios::cur));
+        getline(archivo,password);
+        cout<<username<<" "<<password<<endl;
+        // agregarALaLista(usuario,username,password);
+    // }
 
-    // Lee la estructura USUARIO desde el archivo
-    if (archivoBinario.read(reinterpret_cast<char*>(&usuario), sizeof(USUARIO))) {
-        cout << "Usuario cargado desde el archivo correctamente." << endl;
-        // Puedes realizar acciones adicionales aquí si la lectura fue exitosa
-    } else {
-        cerr << "Error al leer desde el archivo binario." << endl;
-    }
-
-    // Cierra el archivo
-    archivoBinario.close();
+    
+    archivo.close();
     
 }
 
@@ -75,11 +76,6 @@ void guardarEnArchivos(Usuario usuario){
         usuario = usuario->siguiente;
     }
     archivoUsuarios.close();
-    archivoUsuariosBinario.open("registroUsuariosBinario.dat",ios::trunc|ios::binary);
-    // while(usuario != NULL){
-        archivoUsuariosBinario.write((char*)&usuario,sizeof(USUARIO));
-    // }
-    archivoUsuariosBinario.close();
 }
 
 void mostrarLista(Usuario usuario){
