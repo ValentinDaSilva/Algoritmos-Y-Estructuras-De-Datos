@@ -44,27 +44,20 @@ int main(){
 }
 
 void cargarDatos(Usuario& usuario){
-    // Abre el archivo en modo lectura binaria
-    string username, password;
-    ifstream archivo("registroUsuarios.txt");
-    if (!archivo.is_open()) {
-        cout << "No se pudo abrir el archivo binario para lectura." << endl;
-        return;
+    ifstream archivoUsuarios;
+    archivoUsuarios.open("registroUsuarios.txt",ios::app);
+    string username, contrasenia;
+    char aux;
+    while(!archivoUsuarios.eof()){
+        getline(archivoUsuarios,username,' ');
+        getline(archivoUsuarios,username);
+        getline(archivoUsuarios,contrasenia,' ');
+        getline(archivoUsuarios,contrasenia);
+        if(isalpha(username[0])) agregarALaLista(usuario,username,contrasenia);
     }
-    cout<<"LLegue aca"<<endl;
-    // while(!archivo.eof()){
-        archivo.seekp((200,ios::cur));
-        getline(archivo,username);
-        archivo.seekg((12,ios::cur));
-        getline(archivo,password);
-        cout<<username<<" "<<password<<endl;
-        // agregarALaLista(usuario,username,password);
-    // }
-
-    
-    archivo.close();
-    
+    archivoUsuarios.close();
 }
+
 
 void guardarEnArchivos(Usuario usuario){
     ofstream archivoUsuarios, archivoUsuariosBinario;
