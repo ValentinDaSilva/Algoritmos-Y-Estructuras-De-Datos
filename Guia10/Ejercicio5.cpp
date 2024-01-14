@@ -10,14 +10,13 @@ struct LIBRO {
     double precio;
     int cantidadEnExistencia;
     int cantidadVendida;
-    LIBRO* siguiente;
 };
 typedef LIBRO* Libro;
 
 void cargarDatosPorTeclado(Libro&);
 void agregarLibro(Libro&,Libro);
 void guardarEnArchivo(Libro);
-void cargarDatos(Libro&);
+Libro cargarDatos(Libro&);
 void mostrarDatos(Libro);
 
 int main(){
@@ -46,41 +45,40 @@ void mostrarDatos(Libro inventario){
         cout<<endl;
         return;
     }
-    cout<<endl;
-    cout<<"Titulo: "<<inventario->titulo<<endl;
-    cout<<"Autor: "<<inventario->autor<<endl;
-    cout<<"ISBN: "<<inventario->ISBN<<endl;
-    cout<<"Precio: "<<inventario->precio<<endl;
-    cout<<"cantidadEnExistencia: "<<inventario->cantidadEnExistencia<<endl;
-    cout<<"cantidadVendida: "<<inventario->cantidadVendida<<endl;
-    mostrarDatos(inventario->siguiente);
+    ifstream
+    Libro nuevo_libro = new LIBRO;
+    while()
+        cout<<endl;
+        cout<<"Titulo: "<<inventario->titulo<<endl;
+        cout<<"Autor: "<<inventario->autor<<endl;
+        cout<<"ISBN: "<<inventario->ISBN<<endl;
+        cout<<"Precio: "<<inventario->precio<<endl;
+        cout<<"cantidadEnExistencia: "<<inventario->cantidadEnExistencia<<endl;
+        cout<<"cantidadVendida: "<<inventario->cantidadVendida<<endl;
 }
 
-void cargarDatos(Libro& inventario){
+Libro cargarDatos(Libro& inventario){
+    Libro nuevo_libro = NULL;
     ifstream archivo("inventario.bin", ios::app|ios::binary);
     if(archivo.fail()) cout<<"No se puede abrir el archivo"<<endl;
     else{
-        Libro nuevo_libro;
         archivo.seekg(0,ios::end);
         int tamanio = archivo.tellg() / sizeof(LIBRO);
         archivo.seekg(0,ios::beg);
+        nuevo_libro = new LIBRO[tamanio];
         int i = 0;
         while( i < tamanio ){
-            nuevo_libro = new LIBRO;
-            archivo.read((char*)nuevo_libro,sizeof(LIBRO));
-            agregarLibro(inventario,nuevo_libro);
+            archivo.read((char*)nuevo_libro,sizeof(LIBRO)*tamanio);
             i++;
         }
-        archivo.close();
+        archivo.close(); 
     }
+    return nuevo_libro;
 }
 
 void guardarEnArchivo(Libro inventario){
-    ofstream archivo("inventario.bin",ios::trunc|ios::binary);
-    while(inventario != NULL){
-        archivo.write((char*)inventario,sizeof(LIBRO));
-        inventario = inventario->siguiente;
-    }
+    ofstream archivo("inventario.bin",ios::app|ios::binary);
+    archivo.write((char*)inventario,sizeof(LIBRO));
     archivo.close();
 }
 
@@ -97,7 +95,7 @@ void cargarDatosPorTeclado(Libro& inventario){
             cout<<"cantidadEnExistencia: ";cin>>libro->cantidadEnExistencia;
             cout<<"cantidadVendida: ";cin>>libro->cantidadVendida;
             cin.ignore();
-            agregarLibro(inventario,libro);
+            guardarEnArchivo(libro);
         }
     }while(strcmp(libro->titulo,"0"));
 }
