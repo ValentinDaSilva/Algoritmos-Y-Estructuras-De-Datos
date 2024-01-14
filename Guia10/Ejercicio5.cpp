@@ -22,7 +22,6 @@ void mostrarDatos(Libro);
 
 int main(){
     Libro inventario = NULL;
-    cargarDatos(inventario);
     int opcion;
     do{
         cout<<"1. Ver Categalo"<<endl;
@@ -32,8 +31,8 @@ int main(){
         cin.ignore();
         switch (opcion)
         {
-        case 1: //mostrarDatos(inventario);
-                cout<<"Titulo: "<<inventario->titulo<<endl;
+        case 1: cargarDatos(inventario);
+                mostrarDatos(inventario);
                 break;
         case 2: cargarDatosPorTeclado(inventario);break;
         case 3: guardarEnArchivo(inventario);break;
@@ -47,51 +46,27 @@ void mostrarDatos(Libro inventario){
         cout<<endl;
         return;
     }
+    cout<<endl;
     cout<<"Titulo: "<<inventario->titulo<<endl;
     cout<<"Autor: "<<inventario->autor<<endl;
     cout<<"ISBN: "<<inventario->ISBN<<endl;
     cout<<"Precio: "<<inventario->precio<<endl;
     cout<<"cantidadEnExistencia: "<<inventario->cantidadEnExistencia<<endl;
     cout<<"cantidadVendida: "<<inventario->cantidadVendida<<endl;
-    cout<<endl;
-    inventario = inventario->siguiente;
-    cout<<"Titulo: "<<inventario->titulo<<endl;
-    cout<<"Autor: "<<inventario->autor<<endl;
-    cout<<"ISBN: "<<inventario->ISBN<<endl;
-    cout<<"Precio: "<<inventario->precio<<endl;
-    cout<<"cantidadEnExistencia: "<<inventario->cantidadEnExistencia<<endl;
-    cout<<"cantidadVendida: "<<inventario->cantidadVendida<<endl;
-    cout<<endl;
-    inventario = inventario->siguiente;
-    cout<<"Titulo: "<<inventario->titulo<<endl;
-    cout<<"Autor: "<<inventario->autor<<endl;
-    cout<<"ISBN: "<<inventario->ISBN<<endl;
-    cout<<"Precio: "<<inventario->precio<<endl;
-    cout<<"cantidadEnExistencia: "<<inventario->cantidadEnExistencia<<endl;
-    cout<<"cantidadVendida: "<<inventario->cantidadVendida<<endl;
-    cout<<endl;
-    inventario = inventario->siguiente;
-    cout<<"Titulo: "<<inventario->titulo<<endl;
-    cout<<"Autor: "<<inventario->autor<<endl;
-    cout<<"ISBN: "<<inventario->ISBN<<endl;
-    cout<<"Precio: "<<inventario->precio<<endl;
-    cout<<"cantidadEnExistencia: "<<inventario->cantidadEnExistencia<<endl;
-    cout<<"cantidadVendida: "<<inventario->cantidadVendida<<endl;
-    cout<<endl;
-    // mostrarDatos(inventario->siguiente);
+    mostrarDatos(inventario->siguiente);
 }
 
 void cargarDatos(Libro& inventario){
     ifstream archivo("inventario.bin", ios::app|ios::binary);
     if(archivo.fail()) cout<<"No se puede abrir el archivo"<<endl;
     else{
-        Libro nuevo_libro = new LIBRO;
+        Libro nuevo_libro;
         archivo.seekg(0,ios::end);
         int tamanio = archivo.tellg() / sizeof(LIBRO);
         archivo.seekg(0,ios::beg);
         int i = 0;
         while( i < tamanio ){
-            cout<<i<<endl;
+            nuevo_libro = new LIBRO;
             archivo.read((char*)nuevo_libro,sizeof(LIBRO));
             agregarLibro(inventario,nuevo_libro);
             i++;
@@ -125,24 +100,6 @@ void cargarDatosPorTeclado(Libro& inventario){
             agregarLibro(inventario,libro);
         }
     }while(strcmp(libro->titulo,"0"));
-}
-
-void agregarLibro(Libro& inventario, Libro libro){
-    Libro nuevo_libro = libro;
-    nuevo_libro->siguiente = NULL;
-
-    Libro aux1 = inventario;
-    Libro aux2;
-
-    while(aux1 != NULL and nuevo_libro->titulo > aux1->titulo){
-        aux2 = aux1;
-        aux1 = aux1->siguiente;
-    }
-
-    if(aux1 == inventario) inventario = nuevo_libro;
-    else aux2->siguiente = nuevo_libro;
-
-    nuevo_libro->siguiente = aux1;
 }
 
 /* 
