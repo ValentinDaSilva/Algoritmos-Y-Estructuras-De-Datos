@@ -1,0 +1,27 @@
+Titulo: Cien años de soledad
+Autor: Gabriel García Márquez
+ISBN: 9780141184999
+Precio: 19.99
+Cantidad en Existencia: 50
+Cantidad Vendida: 10
+
+Titulo: The Great Gatsby
+Autor: F. Scott Fitzgerald
+ISBN: 9780743273565
+Precio: 12.75
+Cantidad en Existencia: 40
+Cantidad Vendida: 8
+
+Titulo: To Kill a Mockingbird
+Autor: Harper Lee
+ISBN: 9780061120084
+Precio: 15.5
+Cantidad en Existencia: 30
+Cantidad Vendida: 5
+
+Titulo: The Catcher in the Rye
+Autor: J.D. Salinger
+ISBN: 9780241950425
+Precio: 11.25
+Cantidad en Existencia: 25
+Cantidad Vendida: 3

@@ -14,25 +14,27 @@ struct LIBRO {
 };
 typedef LIBRO* Libro;
 
-void mostrarDatos(ifstream&,Libro);
 void mostrarPosicion(Libro);
-void modificarPosicion(ofstream&,int);
-Libro buscarPosicion(fstream&,int);
+void modificarPosicion(int);
+void pasarArchivoATexto(ifstream&);
+void mostrarDatos(ifstream&,Libro);
+Libro buscarPosicion(ifstream&,int);
 
 int main(){
     Libro inventario = NULL;
     ifstream inventarioArchivo("inventario.bin",ios::binary);
     int opcion;
     int posicion; 
-    do{
+    // do{
         cout<<"1. Ver Categalo"<<endl;
         cout<<"2. Mostrar una posicion especifica"<<endl;
         cout<<"3. Modificar Posicion"<<endl;
+        cout<<"4. Pasar archivo a texto."<<endl;
+        cout<<"5. Salir"<<endl;
         cin>>opcion;
-        cin.ignore();
         switch (opcion)
         {
-        case 1: //cargarDatos(inventario);
+        case 1:
                 mostrarDatos(inventarioArchivo,inventario);
                 break;
         case 2: 
@@ -40,18 +42,46 @@ int main(){
                 mostrarPosicion(buscarPosicion(inventarioArchivo,posicion));
                 break;
         case 3: 
-                fstream inventarioArchivoEscritura("inventario.bin",ios::in | ios::out | ios::binary);
                 cout<<"Ingrese la posicion: "; cin>>posicion; cin.ignore();
-                modificarPosicion(inventarioArchivoEscritura,posicion);
+                modificarPosicion(posicion);
+                break;
+        case 4:
+                pasarArchivoATexto(inventarioArchivo);
                 break;
         }
         cout<<endl;
-    }while(opcion!=4);
-    // inventarioArchivo.close(); inventarioArchivoEscritura.close();
+    // }while(opcion!=5);
     return 0;
 }
 
-void modificarPosicion(fstream& archivo,int posicion){
+void pasarArchivoATexto(ifstream& archivo) {
+    ofstream archivoTexto("inventario.txt", ios::trunc);
+
+    if (archivoTexto.fail()) {
+        cerr << "El archivo no se pudo abrir" << endl;
+    } else {
+        Libro libro = new LIBRO;
+        archivo.seekg(0, ios::end);
+        int tamanio = archivo.tellg() / sizeof(LIBRO);
+        archivo.seekg(0, ios::beg);
+
+        int i = 0;
+        while (tamanio > 0 && i < tamanio) {
+            archivo.read((char*)(libro), sizeof(LIBRO));
+            archivoTexto << "Titulo: " << libro->titulo << endl;
+            archivoTexto << "Autor: " << libro->autor << endl;
+            archivoTexto << "ISBN: " << libro->ISBN << endl;
+            archivoTexto << "Precio: " << libro->precio << endl;
+            archivoTexto << "Cantidad en Existencia: " << libro->cantidadEnExistencia << endl;
+            archivoTexto << "Cantidad Vendida: " << libro->cantidadVendida;
+            i++;
+            if(i < tamanio) archivoTexto<<endl<<endl;
+        }
+    }
+    // No es necesario retornar nada en una función void
+}
+
+void modificarPosicion(int posicion){
     Libro libro = new LIBRO;
     cout<<"Titulo: ";cin.getline(libro->titulo,50);
     cout<<"Autor: ";cin.getline(libro->autor,50);
@@ -61,9 +91,10 @@ void modificarPosicion(fstream& archivo,int posicion){
     cout<<"cantidadVendida: ";cin>>libro->cantidadVendida;
     cin.ignore();
     int bytePosicion = (posicion - 1) * sizeof(LIBRO);
-    archivo.seekp(bytePosicion,ios::beg);
-    if(archivo.write((char*)libro,sizeof(LIBRO))) cout<<"Modificada con exito"<<endl;
-    else cout<<"Ocurrio un error"<<endl;
+    fstream archivo("inventario.bin", ios::in | ios::out | ios::binary);
+    archivo.seekg(bytePosicion,ios::beg);
+    archivo.write((char*)libro,sizeof(LIBRO));
+    archivo.close();
 }
 
 void mostrarDatos(ifstream& inventarioArchivo,Libro inventario){
