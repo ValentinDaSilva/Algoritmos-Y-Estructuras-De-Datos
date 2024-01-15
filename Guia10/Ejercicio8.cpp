@@ -21,9 +21,11 @@ void guardarTexto(Texto&);
 int main(){
     string texto;
     Texto cuaderno;
-    cout<<"Ingrese el texto: ";getline(cin,texto);
-    cargarTexto(cuaderno,texto);
-    guardarTexto(cuaderno);
+    cout<<"Que desea hacer?"<<endl;
+    cout<<"1. Agregar texto al cuaderno"<<endl;
+    cout<<"2. Modificar una linea especifica"<<endl;
+    cout<<"3. Mostrar una pagina en especifico"<<endl;
+    
     return 0;
 }
 
