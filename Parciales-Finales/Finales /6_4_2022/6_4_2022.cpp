@@ -51,6 +51,8 @@ int main(){
 
     return 0;
 }
+
+void mergeSort(int i, )
 void mostrarMatriz(int** Matriz, int F,int C){
     for(int i = 0 ; i < F; i++){
         cout<<"[ ";
@@ -87,7 +89,6 @@ int** cantidadPalabrasClave(COMISION Comision, string palabras[],int TL){
             }
         }
     }
-    
     int** M = new int * [TL];
     for(int i = 0 ; i < Comision.cantEstudiantes; i++) M[i] = Matriz[i];
     return M;
