@@ -24,22 +24,31 @@ struct COMISION{
 };
 
 void cargarDatos(COMISION&,COMISION&,COMISION&);
-int* codigosDuplicados(COMISION,COMISION,COMISION);
+int** codigosDuplicados(COMISION,COMISION,COMISION);
 bool EntregasIguales(CODIGOFUENTE,CODIGOFUENTE);
+void compararConComision(COMISION,COMISION,int**,int&);
 
 int main(){
     COMISION A,B,C;
     A.cantEstudiantes = 2;
-    B.cantEstudiantes = 2;
+    B.cantEstudiantes = 3;
     C.cantEstudiantes = 3;
     cargarDatos(A,B,C);
-    int* duplicados = codigosDuplicados(A,B,C);
+    int** duplicados = codigosDuplicados(A,B,C);
+    cout<<"Parejas de codigos iguales:"<<endl;
+    int i = 0;
+    while(duplicados[i][0] != -1){
+        cout<<"[ "<<duplicados[i][0]<<" "<<duplicados[i][1]<<" ]"<<endl;
+        i++;
+    }
     
     return 0;
 }
 
 void cargarDatos(COMISION& A,COMISION& B,COMISION& C){
     A.nombre = 'A';
+    B.nombre = 'B';
+    C.nombre = 'C';
     Linea linea0 = new LINEA;
     Linea linea1 = new LINEA;
     Linea linea2 = new LINEA;
@@ -199,14 +208,19 @@ void cargarDatos(COMISION& A,COMISION& B,COMISION& C){
     C.Entregas[1].CodigoFuente.lineas = linea0;
     C.Entregas[1].IDEstrudiante = 5;
 
-    C.Entregas[2].CodigoFuente.lineas = B.Entregas[1].CodigoFuente.lineas;
-    C.Entregas[2].IDEstrudiante = 6;
-
+    B.Entregas[2].CodigoFuente.lineas = A.Entregas[0].CodigoFuente.lineas;
+    B.Entregas[2].IDEstrudiante = 6;
+    C.Entregas[2].CodigoFuente.lineas = B.Entregas[0].CodigoFuente.lineas;
+    C.Entregas[2].IDEstrudiante = 7;
 }
 
-int* codigosDuplicados(COMISION A,COMISION B,COMISION C){
-    int* duplicados = new int[A.cantEstudiantes + B.cantEstudiantes + C.cantEstudiantes];
-    for(int i = 0 ; i < A.cantEstudiantes + B.cantEstudiantes + C.cantEstudiantes ; i++) duplicados[i] = -1; 
+int** codigosDuplicados(COMISION A,COMISION B,COMISION C){
+    int cantTotal = A.cantEstudiantes + B.cantEstudiantes + C.cantEstudiantes;
+    int** duplicados = new int * [cantTotal];
+    for(int i = 0; i < cantTotal; i++){
+        duplicados[i] = new int;
+        duplicados[i][0] = -1;
+    }
     int TLDuplicados = 0;
     compararConComision(A,A,duplicados,TLDuplicados);
     compararConComision(A,B,duplicados,TLDuplicados);
@@ -215,12 +229,15 @@ int* codigosDuplicados(COMISION A,COMISION B,COMISION C){
     return duplicados;
 }
 
-void compararConComision(COMISION Comision1, COMISION Comision2, int* Duplicados, int& TL){
+void compararConComision(COMISION Comision1, COMISION Comision2, int** Duplicados, int& TL){
     for(int i = 0; i < Comision1.cantEstudiantes; i++){
         for(int j = 0 ; j < Comision2.cantEstudiantes; j++){
             if( Comision1.nombre != Comision2.nombre or (Comision1.nombre == Comision2.nombre and i != j ) ){
                 if(EntregasIguales(Comision1.Entregas[i].CodigoFuente,Comision2.Entregas[j].CodigoFuente)){
-                    Duplicados[TL] = Comision1.Entregas[i].IDEstrudiante;
+                    int* v = new int[2];
+                    v[0] = Comision1.Entregas[i].IDEstrudiante;
+                    v[1] = Comision2.Entregas[j].IDEstrudiante;
+                    Duplicados[TL] = v;
                     TL++;
                 }
             }
