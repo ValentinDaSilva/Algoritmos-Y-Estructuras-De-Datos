@@ -30,6 +30,10 @@ void compararConComision(COMISION,COMISION,int**,int&);
 int** cantidadPalabrasClave(COMISION,string[],int);
 int cantPalabraPorLinea(Linea,string);
 void mostrarMatriz(int**,int,int);
+void merge(Linea,int,int,int,int);
+void mergeSort(Linea,int,int);
+Linea ordenarCodigoFuente(CODIGOFUENTE);
+int tamanioLista(Linea);
 
 int main(){
     COMISION A,B,C;
@@ -45,18 +49,31 @@ int main(){
         i++;
     }
     cout<<"Matriz de cantidad de palabras clave: "<<endl;
-    string palabrasClave[] = {"using namespace","std","using"};
+    string palabrasClave[] = {"kaka","using namespace","using"};
     int cantPalabrasClave = 3;
     mostrarMatriz(cantidadPalabrasClave(C,palabrasClave,3),cantPalabrasClave,C.cantEstudiantes);
 
     return 0;
 }
 
-void ordenarCodigoFuente{
-    
+Linea ordenarCodigoFuente(CODIGOFUENTE codigo){
+    int tamanio = tamanioLista(codigo.lineas);
+    Linea vectorLineas = new LINEA [tamanio];
+    int i = 0;
+    while(i < tamanio){
+        vectorLineas[i] = *codigo.lineas;
+        codigo.lineas = codigo.lineas->siguiente;
+    }
+    mergeSort(vectorLineas,0,tamanio-1);
+    return vectorLineas;
 }
 
-void mergeSort(LINEA v[],int inicio,int final){
+int tamanioLista(Linea lista){
+    if(lista == NULL) return 0;
+    return 1 + tamanioLista(lista->siguiente);
+}
+
+void mergeSort(Linea v,int inicio,int final){
     if(final - inicio == 0) return;
     else{
         int med = (final + inicio)/2;
@@ -66,9 +83,9 @@ void mergeSort(LINEA v[],int inicio,int final){
     }
 }
 
-void merge(LINEA v[],int inicio1, int final1,int inicio2,int final2){
+void merge(Linea v,int inicio1, int final1,int inicio2,int final2){
     int i = inicio1, j = inicio2, k = 0, TL = final2 - inicio1 + 1 ;
-    LINEA aux[TL];
+    Linea aux = new LINEA [TL];
     while(i <= final1 and j <= final2){
         if(v[i].numero < v[j].numero) aux[k++] = v[i++];
         else   aux[k++] = v[j++];
