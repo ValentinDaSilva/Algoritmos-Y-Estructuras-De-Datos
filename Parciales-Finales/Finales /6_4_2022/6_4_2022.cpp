@@ -52,9 +52,37 @@ int main(){
     return 0;
 }
 
-void mergeSort(int i, )
+void ordenarCodigoFuente{
+    
+}
+
+void mergeSort(LINEA v[],int inicio,int final){
+    if(final - inicio == 0) return;
+    else{
+        int med = (final + inicio)/2;
+        mergeSort(v,inicio,med);
+        mergeSort(v,med+1,final);
+        merge(v,inicio,med,med+1,final);
+    }
+}
+
+void merge(LINEA v[],int inicio1, int final1,int inicio2,int final2){
+    int i = inicio1, j = inicio2, k = 0, TL = final2 - inicio1 + 1 ;
+    LINEA aux[TL];
+    while(i <= final1 and j <= final2){
+        if(v[i].numero < v[j].numero) aux[k++] = v[i++];
+        else   aux[k++] = v[j++];
+    }
+    while( i <= final1 ) aux[k++] = v[i++];
+    while( j <= final2 ) aux[k++] = v[j++];
+
+    for(int k = 0 ; k < TL; k++){
+        v[inicio1+k] = aux[k];
+    }
+}
+
 void mostrarMatriz(int** Matriz, int F,int C){
-    for(int i = 0 ; i < F; i++){
+    for(int i = 0 ; i < F ; i++){
         cout<<"[ ";
         for(int j = 0; j < C ; j++){
             cout<<Matriz[i][j]<<" ";
