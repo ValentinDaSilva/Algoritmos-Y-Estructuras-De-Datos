@@ -33,7 +33,8 @@ void mostrarMatriz(int**,int,int);
 void merge(Linea,int,int,int,int);
 void mergeSort(Linea,int,int);
 Linea ordenarCodigoFuente(CODIGOFUENTE);
-int tamanioLista(Linea);
+int cantLineas(CODIGOFUENTE);
+Linea pruebaDeOrdenar();
 
 int main(){
     COMISION A,B,C;
@@ -52,20 +53,27 @@ int main(){
     string palabrasClave[] = {"kaka","using namespace","using"};
     int cantPalabrasClave = 3;
     mostrarMatriz(cantidadPalabrasClave(C,palabrasClave,3),cantPalabrasClave,C.cantEstudiantes);
-
+    cout<<"\nCodigo Ordenado: "<<endl;
+    pruebaDeOrdenar();
     return 0;
 }
 
 Linea ordenarCodigoFuente(CODIGOFUENTE codigo){
-    int tamanio = tamanioLista(codigo.lineas);
+    int tamanio = cantLineas(codigo);
     Linea vectorLineas = new LINEA [tamanio];
     int i = 0;
     while(i < tamanio){
         vectorLineas[i] = *codigo.lineas;
         codigo.lineas = codigo.lineas->siguiente;
+        i++;
     }
     mergeSort(vectorLineas,0,tamanio-1);
     return vectorLineas;
+}
+
+int cantLineas(CODIGOFUENTE codigo){
+    if(codigo.lineas == NULL) return 0;
+    return 1 + tamanioLista(codigo.lineas->siguiente);
 }
 
 int tamanioLista(Linea lista){
@@ -351,4 +359,37 @@ bool EntregasIguales(CODIGOFUENTE Codigo1, CODIGOFUENTE Codigo2){
     }
     if((Codigo1.lineas != NULL and Codigo2.lineas == NULL) or Codigo1.lineas == NULL and Codigo2.lineas != NULL) return false; 
     return sonIguales;
+}
+
+Linea pruebaDeOrdenar(){
+    Linea linea0,linea1,linea2,linea3,linea4,linea5;
+    linea0 = new LINEA;
+    linea1 = new LINEA;
+    linea2 = new LINEA;
+    linea3 = new LINEA;
+    linea4 = new LINEA;
+    linea5 = new LINEA;
+    linea0->numero = 2;
+    linea0->texto = "int x = 10;";
+    linea0->siguiente = linea1;
+    linea1->numero = 1;
+    linea1->texto = "int main() {";
+    linea1->siguiente = linea2;
+    linea2->numero = 0;
+    linea2->texto = "using namespace std;";
+    linea2->siguiente = linea3;
+    linea3->numero = 4;
+    linea3->texto = "cout << \"x es mayor que 5\" << endl;";
+    linea3->siguiente = linea4;
+    linea4->numero = 3;
+    linea4->texto = "if (x > 5) {";
+    linea4->siguiente = linea5;
+    linea5->numero = 5;
+    linea5->texto = "} return 0; }";
+    linea5->siguiente = NULL;
+    CODIGOFUENTE codigo = {linea0};
+    Linea vector = ordenarCodigoFuente(codigo);
+    for(int i = 0 ; i < 6; i++) cout<<vector[i].texto<<endl;
+    cout<<endl;
+    return vector;
 }
