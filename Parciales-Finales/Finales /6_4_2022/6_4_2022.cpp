@@ -27,7 +27,9 @@ void cargarDatos(COMISION&,COMISION&,COMISION&);
 int** codigosDuplicados(COMISION,COMISION,COMISION);
 bool EntregasIguales(CODIGOFUENTE,CODIGOFUENTE);
 void compararConComision(COMISION,COMISION,int**,int&);
-int** cantidadPalabrasClave(COMISION,string[]);
+int** cantidadPalabrasClave(COMISION,string[],int);
+int cantPalabraPorLinea(Linea,string);
+void mostrarMatriz(int**,int,int);
 
 int main(){
     COMISION A,B,C;
@@ -42,12 +44,53 @@ int main(){
         cout<<"[ "<<duplicados[i][0]<<" "<<duplicados[i][1]<<" ]"<<endl;
         i++;
     }
+    cout<<"Matriz de cantidad de palabras clave: "<<endl;
+    string palabrasClave[] = {"using namespace","std","using"};
+    int cantPalabrasClave = 3;
+    mostrarMatriz(cantidadPalabrasClave(C,palabrasClave,3),cantPalabrasClave,C.cantEstudiantes);
 
     return 0;
 }
+void mostrarMatriz(int** Matriz, int F,int C){
+    for(int i = 0 ; i < F; i++){
+        cout<<"[ ";
+        for(int j = 0; j < C ; j++){
+            cout<<Matriz[i][j]<<" ";
+        }
+        cout<<"]"<<endl;
+    }
+}
 
-int** cantidadPalabrasClave(COMISION Comision, string palabras[]){
-    int** Matriz = new 
+int cantPalabraPorLinea(Linea linea, string palabra){
+    int i = 0, contador = 0;
+    string aux = "";
+    while(linea->texto[i + palabra.length()] != '\0'){
+        aux = linea->texto.substr(i,palabra.length());
+        if(aux == palabra) contador++;
+        i++;
+    }
+    return contador;
+}
+
+int** cantidadPalabrasClave(COMISION Comision, string palabras[],int TL){
+    int Matriz[TL][Comision.cantEstudiantes] = {0};
+    for(int i = 0 ; i < TL; i++){
+        for(int j = 0; j < Comision.cantEstudiantes ; j++){
+            Matriz[i][j] = 0;
+        }
+    }
+    for(int i = 0 ; i < TL; i++){
+        for(int j = 0; j < Comision.cantEstudiantes ; j++){
+            while(Comision.Entregas[j].CodigoFuente.lineas != NULL){
+                Matriz[i][j] += cantPalabraPorLinea(Comision.Entregas[j].CodigoFuente.lineas,palabras[i]);
+                Comision.Entregas[j].CodigoFuente.lineas = Comision.Entregas[j].CodigoFuente.lineas->siguiente;
+            }
+        }
+    }
+    
+    int** M = new int * [TL];
+    for(int i = 0 ; i < Comision.cantEstudiantes; i++) M[i] = Matriz[i];
+    return M;
 }
 
 void cargarDatos(COMISION& A,COMISION& B,COMISION& C){
