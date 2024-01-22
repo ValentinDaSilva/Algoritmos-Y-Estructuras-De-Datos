@@ -27,6 +27,7 @@ void cargarDatos(COMISION&,COMISION&,COMISION&);
 int** codigosDuplicados(COMISION,COMISION,COMISION);
 bool EntregasIguales(CODIGOFUENTE,CODIGOFUENTE);
 void compararConComision(COMISION,COMISION,int**,int&);
+int** cantidadPalabrasClave(COMISION,string[]);
 
 int main(){
     COMISION A,B,C;
@@ -41,8 +42,12 @@ int main(){
         cout<<"[ "<<duplicados[i][0]<<" "<<duplicados[i][1]<<" ]"<<endl;
         i++;
     }
-    
+
     return 0;
+}
+
+int** cantidadPalabrasClave(COMISION Comision, string palabras[]){
+    int** Matriz = new 
 }
 
 void cargarDatos(COMISION& A,COMISION& B,COMISION& C){
