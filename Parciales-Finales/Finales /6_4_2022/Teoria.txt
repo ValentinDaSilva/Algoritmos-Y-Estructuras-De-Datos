@@ -64,3 +64,6 @@ Pregunta 6)
 a) Verdadero, si bien la busqueda binaria tiene complejidad logaritmica en el peor de los casos donde el elemento sea el primero se necesitaria recorrer todo el vector para mover las posiciones todas a la derecha al eliminar el elemento, dejando una complejidad lineal. La complejidad final de un algoritmo se determina por la operación dominante, es decir, la operación que contribuye más significativamente al crecimiento de la complejidad a medida que el tamaño de la entrada aumenta.
 
 b) Falso, dependiendo del agloritmo de busqueda que se use dependera la complejidad. Podrian adaptarse
+
+c) Falso, Si la matriz tiene dimensiones MxN (M filas y N columnas) y deseas imprimir la columna completa, la complejidad sería O(M), ya que debes recorrer todas las filas de esa columna específica.
+
