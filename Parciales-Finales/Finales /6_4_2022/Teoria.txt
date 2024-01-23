@@ -32,4 +32,30 @@ d)Falso, el final de una lista esta determinado por NULL.
 
 Pregunta 3)
 a) Verdadero, si es postfijo se realiza despues de la operacion y si es prefijo se realiza antes.
-b) 
+b) Falso, los tipos de datos se claisifcan en simples y compuestos y dentro de los compuestos existe otra clasificacion que es estaticos y dinamicos.
+c) Verdadero, En una expresión lógica compuesta por operadores lógicos (como && y ||), la evaluación en cortocircuito significa que la expresión se interrumpe tan pronto como se determina el resultado final. En un and la primera vez que encuentra una expresion falsa ya no sigue y en un or si encuentra una verdadera ya la da toda por verdadera.
+d) verdadero, al evaluar una condicion devuelve 1 o 0 y este se podria guardar en una variable booleana.
+
+Pregunta 4)
+a) En C++, un programa fuente se obtiene al escribir sentencias en un archivo utilizando un programa editor de texto, y luego ese archivo se almacena en disco con una extensión de archivo comúnmente asociada a C++ (como .cpp).
+b) Verdadero,
+Teoria: 
+    El código objeto es el resultado de la fase de compilación en un proceso de desarrollo de software. Es un archivo binario que contiene el código de máquina generado por el compilador a partir del código fuente. Este código de máquina es específico de la arquitectura de la máquina objetivo y representa las instrucciones que la CPU puede ejecutar directamente . 
+    Cuando compilas un programa fuente en C++, el compilador traduce el código fuente a lenguaje de máquina y genera un programa objeto. Este programa objeto contiene el código de máquina correspondiente al código fuente
+c) Falsa, La combinación se realiza entre el programa objeto y las bibliotecas del sistema, no con el programa fuente. Este proceso de montaje o link produce un programa ejecutable.
+
+d) Verdadero:
+    El programa ejecutable puede ejecutarse tantas veces como sea necesario mientras se respeten las condiciones del entorno en el que se está ejecutando. Cuando dices "correr" o "ejecutar" un programa, te refieres a iniciar la ejecución del código del programa en una computadora.
+
+    Cada vez que ejecutas un programa, el sistema operativo carga el programa en la memoria, asigna los recursos necesarios y comienza la ejecución desde la entrada principal del programa (por ejemplo, la función main en C++). Después de que el programa se ejecuta y completa su tarea, se libera la memoria asignada y se cierra.
+
+    Puedes ejecutar un programa tantas veces como desees, siempre y cuando los recursos necesarios estén disponibles y no haya condiciones específicas que limiten la ejecución (como restricciones de seguridad, recursos insuficientes, etc.). Este es uno de los conceptos fundamentales de la ejecución de programas en sistemas informáticos.
+
+Pregunta 5)
+a) Verdadero, Es cierto que la recursión puede consumir más memoria que las técnicas iterativas en algunos casos. Cuando una función se llama a sí misma de forma recursiva, cada llamada adicional se agrega a la pila de llamadas (stack). Esta pila almacena información sobre las llamadas pendientes, como los parámetros y las variables locales, hasta que se alcanza el caso base y las llamadas se resuelven en reversa.
+
+b) Verdadero, Si la recursión no se controla adecuadamente, puede llevar a un desbordamiento de la pila de llamadas, lo que se conoce como desbordamiento de pila (stack overflow). Esto puede ocurrir si hay demasiadas llamadas recursivas anidadas sin llegar al caso base. La cantidad de memoria disponible en la computadora puede limitar el número de llamadas recursivas que una función puede realizar. Cada llamada recursiva agrega información a la pila de llamadas, y si la pila alcanza su límite, se produce un desbordamiento de pila (stack overflow).
+
+c) Falso, el caso base no tiene un llamado a la propia funcion, si fuera asi se generaria una recursion infinita.
+
+d) Verdadero, en teoría, cualquier función que se pueda expresar de manera recursiva también puede reescribirse utilizando estructuras repetitivas (bucles). La recursión y las iteraciones (uso de bucles) son dos enfoques distintos para resolver problemas, y es posible transformar uno en el otro. Sin embargo, la transformación directa puede no ser siempre sencilla o clara, ya que cada enfoque tiene sus propias características y ventajas en situaciones específicas.
