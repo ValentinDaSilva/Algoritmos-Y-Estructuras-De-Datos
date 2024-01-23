@@ -80,3 +80,34 @@ a) Falso, strlen() es la funcion.
 b) Falso, no pasan por referencia ni por copia, son punteros.
 c) Falso, si la primera es menor que la segunda devuelve valor negativo.
 d) Verdadero, pone los espacios que se colocan al inicio.
+
+Pregunta 9)
+a) Verdadero.
+b) Falso, falta poner registro[i].nombre o (ptr + i)->nombre;
+c) Verdadero.
+d) Para mi , tambien es falso, falta agregarle ios::binary porque si no lo lee como archivo de texto supongo. (o talvez eso solo haga falta cuando no hay escrito nada qsy)
+
+Pregunta 10)
+a) Verdadero
+b) Falso
+c) Verdadero
+d) Verdadero
+
+Preguntas de redaccion:
+a) Tamaño físico y tamaño lógico en arreglos unidimensionales:
+
+Tamaño Físico: Se refiere a la cantidad total de elementos que puede almacenar el arreglo, y está determinado por la cantidad de memoria reservada para el arreglo. Este tamaño físico es fijo y se establece al declarar el arreglo.
+
+Tamaño Lógico: Es la cantidad real de elementos válidos o utilizados en el arreglo. Puede ser menor o igual al tamaño físico. El tamaño lógico es dinámico y puede cambiar durante la ejecución del programa a medida que se agregan o eliminan elementos del arreglo.
+
+Cuándo utilizar cada uno:
+
+Tamaño Físico: Se utiliza al dimensionar el arreglo y determinar la cantidad máxima de elementos que puede contener. Es útil para asignar la memoria necesaria y asegurar que haya suficiente espacio para todos los elementos previstos.
+
+Tamaño Lógico: Se utiliza para realizar operaciones y manipulaciones en el arreglo. Por ejemplo, al recorrer el arreglo, solo es necesario considerar los elementos hasta el tamaño lógico para evitar acceder a elementos no inicializados o desbordar el tamaño real del arreglo.
+
+b)
+MergeSort: Este algoritmo de ordenamiento utiliza una estrategia de "divide y venceras" , consiste en ir diviendo en dos partes el vector , las ordena de forma recursiva y luego que estan ordenadas las une con una operacion de merge para obtener un vector complemtanete ordenado.
+
+
+

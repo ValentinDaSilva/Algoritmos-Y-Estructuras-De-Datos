@@ -15,8 +15,6 @@ void agregarNodo(NODO*& lista){
     lista = nuevo_nodo;
 }
 int main(){
-    char n1[] = "A";
-    char n2[] = "B";
-    cout<<strcmp(,n2)<<endl;
+    for(int i=0, j=5; ; i++, j--) {cout << i << "  " << j << endl;}
     return 0;
 }
