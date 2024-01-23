@@ -67,3 +67,14 @@ b) Falso, dependiendo del agloritmo de busqueda que se use dependera la compleji
 
 c) Falso, Si la matriz tiene dimensiones MxN (M filas y N columnas) y deseas imprimir la columna completa, la complejidad sería O(M), ya que debes recorrer todas las filas de esa columna específica.
 
+d) Falso, para tener complejidad logaritmica se tiene que ir achicando la talla del problema en cada iteracion, tendria complejidad O(N).
+
+Pregunta 7)
+a) Verdadero, uno de los objetivos de las funciones es poder modularizar
+b) Verdadero, en las funciones tipo void no es necesario poner los returns;
+c) Falso, no es necesario poner los nombres de las variables.
+d) Verdadero, primero se va a ejecutar la funcion interna y el valor que se devuelve es utilizado en la funcion externa.
+
+Pregunta 8)
+a) Falso, strlen() es la funcion.
+b) 
