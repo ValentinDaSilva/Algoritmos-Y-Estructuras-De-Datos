@@ -1,4 +1,5 @@
 #include<iostream>
+#include<cstring>
 using namespace std;
 
 struct NODO {
@@ -14,10 +15,8 @@ void agregarNodo(NODO*& lista){
     lista = nuevo_nodo;
 }
 int main(){
-    Nodo lista = new NODO;
-    lista->dato = 5;
-    agregarNodo(lista);
-    cout<<lista->dato<<endl;
-    cout<<lista->siguiente->dato<<endl;
+    char n1[] = "A";
+    char n2[] = "B";
+    cout<<strcmp(,n2)<<endl;
     return 0;
 }

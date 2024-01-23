@@ -77,4 +77,6 @@ d) Verdadero, primero se va a ejecutar la funcion interna y el valor que se devu
 
 Pregunta 8)
 a) Falso, strlen() es la funcion.
-b) 
+b) Falso, no pasan por referencia ni por copia, son punteros.
+c) Falso, si la primera es menor que la segunda devuelve valor negativo.
+d) Verdadero, pone los espacios que se colocan al inicio.
