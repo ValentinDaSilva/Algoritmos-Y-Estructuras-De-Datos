@@ -1,0 +1,29 @@
+Pregunta 1 ) 
+a) El primer índice de una matriz siempre se asocia a las filas, independientemente del nombre que éste tenga.
+
+Esta afirmación es correcta. En C++, cuando se declara una matriz de varias dimensiones, el primer índice se asocia a las filas. Esto significa que puedes acceder a un elemento específico utilizando la notación matriz[fila][columna], donde fila es el primer índice y columna es el segundo índice.
+
+
+b) Si se tiene una matriz de MxL enteros y se debe indicar si hay al menos 1 columna cuya suma sea 10, la estructura más óptima a utilizar es un while externo con un for interno anidado.
+
+Correcto , El bucle externo while es para que una vez encontrada 1 matriz con una variable bandera pueda cortar las iteraciones y no proseguir buscando, porque solamente se necesita 1. El bucle interno for es para recorrer las filas que tienen que ser recorridas siempre completamente para sumar sus elementos.
+
+c)
+Falso , cada {} representa las filas de la matriz.
+
+
+d) Al pasar una matriz como parámetro a una función, si se inserta un número dentro de los corchetes de la 1era dimensión (por ejemplo: int mat[3][7];) el compilador lo ignorará.
+
+Verdadero.
+Cuando pasas una matriz como parámetro a una función en C++, la dimensión de la primera dimensión se ignora. Esto se debe a que, en realidad, estás pasando un puntero a la primera fila de la matriz, y el tamaño de la primera dimensión no es necesario para determinar la dirección de inicio de la matriz.
+Verdadero, En C++, cuando se pasa una matriz como parámetro a una función, la información sobre el tamaño de la segunda dimensión (columnas) es necesaria para que el compilador pueda calcular las direcciones de memoria internas de manera adecuada.
+La información sobre el tamaño de las columnas (en este caso, 5) es necesaria para que el compilador pueda calcular correctamente las direcciones de memoria de los elementos dentro de la matriz. Esto es porque, aunque el nombre matriz se degrada a un puntero a la primera fila, el compilador aún necesita saber cuántos elementos hay en cada fila para calcular las direcciones de memoria.
+
+Pregunta 2)
+
+a) Es conveniente utilizarlas, en vez de los arreglos dinámicos, si se van a realizar muchas inserciones y eliminaciones de datos
+Esto es verdadero, son convenientes porque no hace falta reorganizar toda la estructura a difrerencia de los arreglos que necesitas mover todas las otras posiciones.
+
+b) No necesariamente. El compilador no informará un error si no liberamos el espacio utilizado por un nodo eliminado de una lista enlazada. Es responsabilidad del programador administrar la memoria y liberar los nodos que ya no son necesarios.
+
+c) Falso, la insercion de elementos al principio de una lista requiere de la 
