@@ -59,3 +59,8 @@ b) Verdadero, Si la recursión no se controla adecuadamente, puede llevar a un d
 c) Falso, el caso base no tiene un llamado a la propia funcion, si fuera asi se generaria una recursion infinita.
 
 d) Verdadero, en teoría, cualquier función que se pueda expresar de manera recursiva también puede reescribirse utilizando estructuras repetitivas (bucles). La recursión y las iteraciones (uso de bucles) son dos enfoques distintos para resolver problemas, y es posible transformar uno en el otro. Sin embargo, la transformación directa puede no ser siempre sencilla o clara, ya que cada enfoque tiene sus propias características y ventajas en situaciones específicas.
+
+Pregunta 6)
+a) Verdadero, si bien la busqueda binaria tiene complejidad logaritmica en el peor de los casos donde el elemento sea el primero se necesitaria recorrer todo el vector para mover las posiciones todas a la derecha al eliminar el elemento, dejando una complejidad lineal. La complejidad final de un algoritmo se determina por la operación dominante, es decir, la operación que contribuye más significativamente al crecimiento de la complejidad a medida que el tamaño de la entrada aumenta.
+
+b) Falso, dependiendo del agloritmo de busqueda que se use dependera la complejidad. Podrian adaptarse
