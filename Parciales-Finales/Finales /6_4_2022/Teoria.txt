@@ -26,4 +26,10 @@ Esto es verdadero, son convenientes porque no hace falta reorganizar toda la est
 
 b) No necesariamente. El compilador no informará un error si no liberamos el espacio utilizado por un nodo eliminado de una lista enlazada. Es responsabilidad del programador administrar la memoria y liberar los nodos que ya no son necesarios.
 
-c) Falso, la insercion de elementos al principio de una lista requiere de la 
+c) Falso, si el nuevo nodo que se crea como NODO nuevo_nodo; (osea no un puntero) entonces no es necesariamente de puntero a puntero;
+
+d)Falso, el final de una lista esta determinado por NULL.
+
+Pregunta 3)
+a) Verdadero, si es postfijo se realiza despues de la operacion y si es prefijo se realiza antes.
+b) 
