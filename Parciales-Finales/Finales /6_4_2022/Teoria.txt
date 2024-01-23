@@ -109,5 +109,12 @@ Tamaño Lógico: Se utiliza para realizar operaciones y manipulaciones en el arr
 b)
 MergeSort: Este algoritmo de ordenamiento utiliza una estrategia de "divide y venceras" , consiste en ir diviendo en dos partes el vector , las ordena de forma recursiva y luego que estan ordenadas las une con una operacion de merge para obtener un vector complemtanete ordenado.
 
+Metodo Burbuja: Su bucle interno se encarga de ir haciendo comparaciones entre elementos adyacentes sucesivamente entre las posiciones, con el fin llevar el elemento mayor hasta el final. Su bucle externo se va encargando repetir el proceso tantas veces sea necesario hasta que el vector quede ordenado.
+
+Metodo Seleccion: Selecciona el elemento mas pequeño de la lista y lo va colocando en la primer posicion no ordenada, comienza poniendolo en la primer posicion y luego el indice que controla la ultima posicion no ordenada va incrementando y se van colocando los elementos que quedan (buscando siempre el mas poqueño) en dicha posicion, hasta llegar al final del vector.
+
+Metodo de insercion: El algoritmo se centra en ir dejando una parte ordenada de la lista, va tomando uno por uno los elementos y lo mueve hasta que encuentra uno mayor que el. Va haciendo esto con cada elemento, llegando a que quedan todos ordenados porque se los fue colocando en el lugar que deberian ir segun su valor.
+
+
 
 
